@@ -32,9 +32,11 @@ load_files = function(){
 		names(list.files)[i] = unlist(strsplit(files[i], ".tsv", T))[1]
 		print(paste(files[i], "loaded"))
 	}
+	list.files$Pap.Unclassified = rbind(list.files$unclassified, list.files$Pap)
 	setwd("../../src")
 	return(list.files)
 }
+
 
 get_genes = function(df, min_pats){
 	genes = colnames(df)[which(apply(df,2,sum)>=min_pats)]
